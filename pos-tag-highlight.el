@@ -1,15 +1,15 @@
 ;;; pos-tag-highlight.el --- Highlight prepositions and verbs using POS tagging -*- lexical-binding: t; -*-
 
-;; Author: Your Name <your.email@example.com>
+;; Author: Yibie <yibie@outlook.com>
 ;; Version: 1.0
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: grammar, highlighting, POS tagging, tools
-;; URL: https://github.com/yourusername/pos-tag-highlight
+;; URL: https://github.com/yibie/pos-tag-highlight
 
 ;;; Commentary:
 
 ;; This package highlights prepositions and verbs in the current buffer or a selected region
-;; using Python's NLTK for POS tagging. It provides commands to apply or remove highlighting
+;; using spaCy for POS tagging. It provides commands to apply or remove highlighting
 ;; and binds them to convenient key combinations.
 
 ;;; Code:
@@ -18,7 +18,7 @@
   "Highlight prepositions and verbs using POS tagging."
   :prefix "pos-tag-highlight-"
   :group 'tools
-  :link '(url-link :tag "GitHub" "https://github.com/yourusername/pos-tag-highlight"))
+  :link '(url-link :tag "GitHub" "https://github.com/yibie/pos-tag-highlight"))
 
 (defcustom pos-tag-highlight-python-command "python"
   "Command to run Python. Change this to the full path if needed."
@@ -62,18 +62,18 @@
       result)))
 
 ;;;###autoload
-(defun pos-tag-highlight-highlight-buffer ()
+(defun pos-tag-highlight-buffer ()
   "Highlight prepositions and verbs in the current buffer using POS tagging."
   (interactive)
-  (pos-tag-highlight--highlight-region (point-min) (point-max)))
+  (pos-tag-highlight--region (point-min) (point-max)))
 
 ;;;###autoload
-(defun pos-tag-highlight-highlight-region (begin end)
+(defun pos-tag-highlight-region (begin end)
   "Highlight prepositions and verbs in the specified region using POS tagging."
   (interactive "r")
-  (pos-tag-highlight--highlight-region begin end))
+  (pos-tag-highlight--region begin end))
 
-(defun pos-tag-highlight--highlight-region (begin end)
+(defun pos-tag-highlight--region (begin end)
   "Internal function to highlight prepositions and verbs between BEGIN and END."
   (let* ((text (buffer-substring-no-properties begin end))
          (tagged-text (pos-tag-highlight-pos-tag-text text))
